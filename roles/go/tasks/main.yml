@@ -1,0 +1,18 @@
+- name: Download Golang tarball
+  ansible.builtin.get_url:
+    url: https://go.dev/dl/go1.22.2.linux-amd64.tar.gz
+    dest: /tmp/go.tar.gz
+
+- name: Extract Golang tarball
+  ansible.builtin.unarchive:
+    src: /tmp/go.tar.gz
+    dest: /usr/local
+    creates: /usr/local/go
+
+- name: Remove Golang tarball
+  file:
+    path: /tmp/go.tar.gz
+    state: absent
+
+- name: Set up GO PATH in environment variables
+  ansible.builtin.shell: export PATH=$PATH:/usr/local/go/bin

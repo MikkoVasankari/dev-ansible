@@ -1,0 +1,27 @@
+- name: Install zsh
+  ansible.builtin.package:
+    name: zsh
+    state: present
+  become: true
+
+- name: Set user shell to zsh
+  ansible.builtin.user:
+    name: kari
+    shell: /bin/zsh
+  become: true
+
+- name: Check that the .oh-my-zsh config exists
+  stat:
+    path: /home/kari/.oh-my-zsh
+  register: oh_my_stats
+
+- name: Oh-My-Zsh
+  ansible.builtin.shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh > ~/.oh-my-installer && chmod +x ~/.oh-my-installer && ~/.oh-my-installer
+  when: oh_my_stats.stat.exists == False
+  become_user: kari
+
+- name: Install Oh-My-Zsh syntax highlighting plugin
+  ansible.builtin.shell: git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-/home/kari/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+- name: Remove installation files
+  ansible.builtin.shell: sudo rm -rf /home/kari/.oh-my-installer
