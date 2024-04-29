@@ -36,6 +36,8 @@ export LANG=en_US.UTF-8
 #   export EDITOR='mvim'
 # fi
 
+# Golang to PATH
+export PATH=$PATH:/usr/local/go/bin
 
 # bun completions
 [ -s "/home/kari/.bun/_bun" ] && source "/home/kari/.bun/_bun"

@@ -26,9 +26,9 @@
       ansible.builtin.apt:
         pkg:
           - neovim
-          - htop
           - jq
           - python3-pip
+          - btop
 
     - name: Run Roles
       include_role:
