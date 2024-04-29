@@ -1,2 +1,2 @@
 # dev-ansible
-Ansible playbook to create my dev environment
+Ansible playbook and tasks to create my dev environment
