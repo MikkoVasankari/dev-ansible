@@ -30,10 +30,12 @@
         - jq
         - python3-pip
 
-    - name: Run roles
-      roles:  
-        - docker  
+    - name: Run Roles
+      include_role:
+          name: "{{ item }}"
+      loop:
         - go
-        - rust
+        - rust  
+        - docker
         - vscodium
         - zsh
