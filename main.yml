@@ -1,4 +1,4 @@
-# Create dev env for Deb/Ubuntu based systems
+# Create dev env for Debian based systems
 # Remember logout and login back in to make installations work
 
 - name: Create development environment
