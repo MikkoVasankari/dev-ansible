@@ -22,16 +22,9 @@
 
 - name: Remove oh-my-zsh installer
   ansible.builtin.shell: sudo rm -rf /home/kari/.oh-my-installer
-  become_user: kari
-
-- name: Check that the zsh-syntax-highlighting plugin exists
-  stat:
-    path: /home/kari/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-  register: zsh_syntax_highlighting_plugin
 
 - name: Install Oh-My-Zsh syntax highlighting plugin
   ansible.builtin.shell: git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-/home/kari/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-  when: zsh_syntax_highlighting_plugin == False
 
 - name: Copy oh-my-zsh theme
   ansible.builtin.copy:
