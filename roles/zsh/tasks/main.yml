@@ -30,7 +30,7 @@
 
 - name: Install Oh-My-Zsh syntax highlighting plugin
   ansible.builtin.shell: git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-/home/kari/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-  when: zsh-syntax-highlighting-plugin == False
+  when: zsh_syntax_highlighting_plugin == False
 
 - name: Copy oh-my-zsh theme
   ansible.builtin.copy:

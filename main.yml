@@ -24,11 +24,11 @@
     - name: Install apt packages
       become_method: sudo
       ansible.builtin.apt:
-      pkg:
-        - neovim
-        - htop
-        - jq
-        - python3-pip
+        pkg:
+          - neovim
+          - htop
+          - jq
+          - python3-pip
 
     - name: Run Roles
       include_role:
