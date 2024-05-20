@@ -1,5 +1,5 @@
 # dev-ansible
-Ansible playbook and tasks to create my dev environment
+Ansible playbook and playsto create my dev environment
 
 To run use 
 ``` 
