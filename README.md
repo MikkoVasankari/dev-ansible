@@ -1,5 +1,5 @@
 # dev-ansible
-Ansible playbook and plays to create my development tools
+Ansible playbook and plays to install development tools that I use.
 
 To run use 
 ``` 
