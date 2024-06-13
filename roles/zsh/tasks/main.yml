@@ -6,40 +6,40 @@
 
 - name: Check that the .oh-my-zsh config exists
   stat:
-    path: /home/kari/.oh-my-zsh
+    path: "{{ ansible_env.HOME }}.oh-my-zsh"
   register: oh_my_stats
 
 - name: Oh-My-Zsh
   ansible.builtin.shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh > ~/.oh-my-installer && chmod +x ~/.oh-my-installer && ~/.oh-my-installer
   when: oh_my_stats.stat.exists == False
-  become_user: kari
+  become_user: "{{ ansible_env.USER }}"
 
 - name: Copy .zshrc config
   ansible.builtin.copy:
     src: ".zshrc"
-    dest: "/home/kari/.zshrc"
+    dest: "{{ ansible_env.HOME }}.zshrc"
     mode: "0644"
 
 - name: Remove oh-my-zsh installer
-  ansible.builtin.shell: sudo rm -rf /home/kari/.oh-my-installer
+  ansible.builtin.shell: sudo rm -rf {{ ansible_env.HOME }}.oh-my-installer
 
 - name: Check that the Oh-My-zsh syntax highlight plugin exists
   stat:
-    path: /home/kari/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    path: "{{ ansible_env.HOME }}.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
   register: oh_my_zsh_syntax_highlight
 
 - name: Install Oh-My-Zsh syntax highlighting plugin
-  ansible.builtin.shell: git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-/home/kari/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  ansible.builtin.shell: git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-{{ ansible_env.HOME }}.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
   when: oh_my_zsh_syntax_highlight.stat.exists == False
 
 - name: Copy oh-my-zsh theme
   ansible.builtin.copy:
     src: "catppuccin_macchiato-zsh-syntax-highlighting.zsh"
-    dest: "/home/kari/.oh-my-zsh/themes/"
+    dest: "{{ ansible_env.HOME }}.oh-my-zsh/themes/"
     mode: "0644"
 
 - name: Set user shell to zsh
   ansible.builtin.user:
-    name: kari
+    name: "{{ ansible_env.USER }}"
     shell: /bin/zsh
   become: true

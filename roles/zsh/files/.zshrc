@@ -39,13 +39,6 @@ export LANG=en_US.UTF-8
 # Golang to PATH
 export PATH=$PATH:/usr/local/go/bin
 
-# bun completions
-[ -s "/home/kari/.bun/_bun" ] && source "/home/kari/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 # Custom Aliases
 # alias -g keymapp="sudo ~/Keymapp/keymapp"
 # alias -g icat="kitty +kitten icat "
