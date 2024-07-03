@@ -4,6 +4,8 @@
     dest: /tmp/go.tar.gz
 
 - name: Extract Golang tarball
+  become: yes
+  become_method: sudo
   ansible.builtin.unarchive:
     src: /tmp/go.tar.gz
     dest: /usr/local
