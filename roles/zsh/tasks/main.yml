@@ -40,6 +40,8 @@
     mode: "0644"
 
 - name: Set user shell to zsh
+  become: yes  
+  become_method: sudo
   ansible.builtin.user:
     name: "{{ ansible_env.USER }}"
     shell: /bin/zsh
