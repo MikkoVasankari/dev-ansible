@@ -3,10 +3,10 @@
 
 - name: Create development environment
   hosts: localhost
-  become: yes
-  become_method: sudo
   tasks:
     - name: Install apt packages
+      become: yes
+      become_method: sudo
       ansible.builtin.apt:
         pkg:
           - neovim
