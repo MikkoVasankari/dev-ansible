@@ -1,4 +1,6 @@
 - name: Install/Check for Flatpak
+  become: yes
+  become_method: sudo
   package:
     name: flatpak
     state: present
