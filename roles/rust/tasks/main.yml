@@ -1,3 +1,28 @@
-- name: Install Rust and Rustup 
-  ansible.builtin.shell: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+- name: Check if Rust is installed
+  ansible.builtin.stat:
+    path: /home/{{ ansible_env.USER }}/.cargo/bin/rustc
+  register: rustc_stat
   become_user: "{{ ansible_env.USER }}"
+
+- name: Download Rustup installation script
+  ansible.builtin.get_url:
+    url: https://sh.rustup.rs
+    dest: /tmp/rustup-init.sh
+    mode: '0755'
+  when: not rustc_stat.stat.exists
+
+- name: Run Rustup installation script
+  ansible.builtin.command: /tmp/rustup-init.sh -y
+  become_user: "{{ ansible_env.USER }}"
+  when: not rustc_stat.stat.exists
+
+- name: Remove Rustup installation script
+  ansible.builtin.file:
+    path: /tmp/rustup-init.sh
+    state: absent
+  when: not rustc_stat.stat.exists
+
+- name: Update Rust if it is already installed
+  ansible.builtin.command: "{{ ansible_env.HOME }}/.cargo/bin/rustup update"
+  become_user: "{{ ansible_env.USER }}"
+  when: rustc_stat.stat.exists

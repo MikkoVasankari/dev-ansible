@@ -1,7 +1,7 @@
 echo ' 
 
  /\_/\
-( o.o )
+( o.o )    Welcome '$USER'
  > ^ <
 
 '

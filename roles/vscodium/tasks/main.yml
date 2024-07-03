@@ -9,4 +9,4 @@
     creates: /var/lib/flatpak/repo/flathub
 
 - name: Install VSCodium from Flathub
-  command: flatpak install -y flathub com.vscodium.codium
+  command: flatpak install -y --system flathub com.vscodium.codium

@@ -1,45 +1,22 @@
-- name: "Docker | Update APT cache"
-  ansible.builtin.apt:
-    update_cache: true
-  become: true
+- name: Check if Docker is installed
+  ansible.builtin.stat:
+    path: /usr/bin/docker
+  register: docker_stat
 
-- name: "Docker | Install dependencies"
-  ansible.builtin.apt:
-    name:
-      - ca-certificates
-      - curl
-      - gnupg
-    state: present
-  become: true
+- name: Download Docker installation script
+  ansible.builtin.get_url:
+    url: https://get.docker.com
+    dest: /tmp/get-docker.sh
+    mode: '0755'
+  when: not docker_stat.stat.exists
 
-- name: "Docker | Add Docker’s official GPG key"
-  ansible.builtin.apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    keyring: /etc/apt/keyrings/docker.gpg
-    state: present
-  become: true
+- name: Run Docker installation script
+  ansible.builtin.command: /tmp/get-docker.sh
+  become_user: "{{ ansible_env.USER }}"
+  when: not docker_stat.stat.exists
 
-- name: "Docker | Get System Architecture"
-  ansible.builtin.command: "dpkg --print-architecture"
-  register: dpkg_architecture
-  changed_when: false
-  failed_when: false
-  check_mode: false
-
-- name: "Docker | Add Docker’s stable repository"
-  ansible.builtin.apt_repository:
-    repo: deb [arch={{ dpkg_architecture.stdout }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
-    mode: "0644"
-  become: true
-
-- name: "Docker | Install Docker Engine"
-  ansible.builtin.apt:
-    name:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-      - docker-buildx-plugin
-      - docker-compose-plugin
-    state: present
-    update_cache: true
-  become: true
+- name: Remove Docker installation script
+  ansible.builtin.file:
+    path: /tmp/get-docker.sh
+    state: absent
+  when: not docker_stat.stat.exists

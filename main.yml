@@ -1,9 +1,8 @@
 # Create dev env for Debian based systems
-# Remember logout and login back in to make installations work
+# Remember logout and login back in to make installations update
 
 - name: Create development environment
-  hosts: localhost 
-  become: yes
+  hosts: localhost
   tasks:
 
     - name: Ensure Git is installed
@@ -22,6 +21,7 @@
         state: present
 
     - name: Install apt packages
+      become: yes
       become_method: sudo
       ansible.builtin.apt:
         pkg:
@@ -29,6 +29,7 @@
           - jq
           - python3-pip
           - btop
+          - fzf
 
     - name: Run Roles
       include_role:
