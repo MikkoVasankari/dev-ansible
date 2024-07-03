@@ -3,26 +3,10 @@
 
 - name: Create development environment
   hosts: localhost
+  become: yes
+  become_method: sudo
   tasks:
-
-    - name: Ensure Git is installed
-      ansible.builtin.package:
-        name: git
-        state: present
-
-    - name: Ensure cURL is installed
-      ansible.builtin.package:
-        name: curl
-        state: present
-
-    - name: Ensure python3 is installed
-      ansible.builtin.package:
-        name: python3
-        state: present
-
     - name: Install apt packages
-      become: yes
-      become_method: sudo
       ansible.builtin.apt:
         pkg:
           - neovim
