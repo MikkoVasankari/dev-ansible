@@ -1,4 +1,6 @@
 - name: Install zsh
+  become: yes
+  become_method: sudo
   ansible.builtin.package:
     name: zsh
     state: present
