@@ -1,3 +1,11 @@
+echo ' 
+
+ /\_/\
+( o.o )
+ > ^ <
+
+'
+
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -29,16 +37,20 @@ source $ZSH/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
 # Golang to PATH
 export PATH=$PATH:/usr/local/go/bin
+
+# Flutter PATH
+# export PATH="/usr/bin/flutter/bin:$PATH"
 
 # Custom Aliases
 # alias -g keymapp="sudo ~/Keymapp/keymapp"
 # alias -g icat="kitty +kitten icat "
+alias fcd="cd ~ && cd \$(find * -type d | fzf)"
+
+# alias -g godot="~/Godotti/Godot_v4.2-stable_linux.x86_64"
+
+# Node version manager
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
