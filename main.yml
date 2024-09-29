@@ -17,10 +17,10 @@
 
     - name: Run Roles
       include_role:
-          name: "{{ item }}"
+        name: "{{ item }}"
       loop:
         - go
-        - rust  
+        - rust
         - docker
-        - vscodium
+        # - vscodium
         - zsh
