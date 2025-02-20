@@ -1,6 +1,6 @@
 - name: Download Golang tarball
   ansible.builtin.get_url:
-    url: https://go.dev/dl/go1.22.2.linux-amd64.tar.gz
+    url: https://go.dev/dl/go1.24.0.linux-amd64.tar.gz
     dest: /tmp/go.tar.gz
 
 - name: Extract Golang tarball
