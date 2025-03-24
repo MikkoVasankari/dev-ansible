@@ -42,4 +42,5 @@ export PATH=$PATH:/usr/local/go/bin
 
 # Custom Aliases
 # alias -g keymapp="sudo ~/Keymapp/keymapp"
+ alias -g icat="kitty +kitten icat "
 alias fcd="cd ~ && cd \$(find * -type d | fzf)"
