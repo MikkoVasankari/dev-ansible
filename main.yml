@@ -14,13 +14,14 @@
           - python3-pip
           - btop
           - fzf
+          - mpv
 
     - name: Run Roles
       include_role:
-          name: "{{ item }}"
+        name: "{{ item }}"
       loop:
         - go
-        - rust  
+        - rust
         - docker
         - vscodium
         - zsh

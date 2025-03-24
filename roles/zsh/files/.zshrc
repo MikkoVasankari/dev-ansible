@@ -1,4 +1,4 @@
-echo ' 
+echo '
 
  /\_/\
 ( o.o )    Welcome '$USER'
@@ -40,17 +40,6 @@ export LANG=en_US.UTF-8
 # Golang to PATH
 export PATH=$PATH:/usr/local/go/bin
 
-# Flutter PATH
-# export PATH="/usr/bin/flutter/bin:$PATH"
-
 # Custom Aliases
 # alias -g keymapp="sudo ~/Keymapp/keymapp"
-# alias -g icat="kitty +kitten icat "
 alias fcd="cd ~ && cd \$(find * -type d | fzf)"
-
-# alias -g godot="~/Godotti/Godot_v4.2-stable_linux.x86_64"
-
-# Node version manager
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
